@@ -210,13 +210,7 @@ select {
 }
 
 #mobile-round-banner-holder {
-  display: none;
-}
-
-@media (max-width: 1180px) {
-  #mobile-round-banner-holder {
-    display: block;
-  }
+  display: block;
 }
 
 
@@ -717,6 +711,7 @@ select {
     margin-top: 0;
     margin-bottom: 8px;
     text-align: center;
+    order: -1;
   }
 
 
