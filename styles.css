@@ -41,6 +41,8 @@ select {
   width: 1140px;
   margin: 0 auto;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 #header {
@@ -52,6 +54,8 @@ select {
   border: 1px solid var(--border);
   background: var(--panel);
   overflow: hidden;
+  align-self: flex-start;
+  margin-bottom: 8px;
 }
 
 #header img {
@@ -64,23 +68,24 @@ select {
 
 #middle {
   position: relative;
+  margin-bottom: 12px;
 }
 
 #container,
 #container2 {
   width: 100%;
-  float: left;
 }
 
 #links {
-  margin-left: 220px;
+  margin-left: 0;
   position: relative;
-  top: -107px;
+  top: 0;
 }
 
 .top-nav {
   display: flex;
   background: var(--panel);
+  width: fit-content;
 }
 
 .top-link {
@@ -105,17 +110,16 @@ select {
 
 #seasonHolder {
   text-align: center;
-  width: 760px;
-  position: relative;
-  left: 250px;
+  width: 100%;
+  max-width: 760px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
-}
-
-#seasonHolder {
-  top: -90px;
+  position: relative;
+  top: 0;
+  left: 0;
+  margin: 0 0 12px 0;
 }
 
 #title {
@@ -136,27 +140,35 @@ select {
   text-align: center;
 }
 
+#main-layout {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
 #sideLeft2,
 #sideLeft3 {
-  float: left;
   width: 180px;
-  position: relative;
-  left: 0;
+  min-width: 180px;
   border: 1px solid var(--border);
   background: var(--panel);
   text-align: center;
   color: var(--muted);
-  clear: left;
 }
 
 #sideLeft2 {
-  top: -58px;
   padding: 10px 8px;
 }
 
 #sideLeft3 {
-  top: -38px;
   padding: 10px 8px;
+}
+
+#sidebar-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 180px;
 }
 
 .side-section {
@@ -203,10 +215,7 @@ select {
 }
 
 #content {
-  position: absolute;
-  left: 250px;
-  width: 760px;
-  margin-top: -58px;
+  flex: 1;
   padding: 5px;
   color: var(--text);
   text-align: center;
@@ -615,17 +624,21 @@ select {
   }
 
   #links {
-    margin-left: 190px;
+    margin-left: 0;
   }
 
   #seasonHolder {
-    width: calc(100% - 220px);
-    left: 220px;
+    width: 100%;
+    left: 0;
   }
 
   #content {
-    left: 220px;
-    width: calc(100% - 220px);
+    left: auto;
+    width: 100%;
+  }
+
+  #main-layout {
+    gap: 10px;
   }
 }
 
@@ -651,6 +664,7 @@ select {
     width: 100%;
     height: auto;
     top: 0;
+    align-self: auto;
   }
 
   #header img {
@@ -682,6 +696,24 @@ select {
   #links,
   #seasonHolder {
     margin: 0;
+  }
+
+  #main-layout {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  #sidebar-wrapper {
+    flex-direction: row;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  #sideLeft2,
+  #sideLeft3 {
+    flex: 1;
+    min-width: 0;
+    width: auto;
   }
 
   .top-nav {
@@ -771,10 +803,23 @@ select {
     padding: 8px;
   }
 
+  #sidebar-wrapper {
+    flex-direction: column;
+  }
+
   #sideLeft2 {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
+    width: 100%;
+  }
+
+  #sideLeft3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    text-align: center;
+    width: 100%;
   }
 
   #sideLeft2 .side-section:not(.side-hidden) {
@@ -791,13 +836,6 @@ select {
     margin-bottom: 0;
     min-height: 40px;
     padding: 8px 6px;
-  }
-
-  #sideLeft3 {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px;
-    text-align: center;
   }
 
   .status-line {
@@ -904,4 +942,3 @@ select {
     grid-template-columns: 1fr;
   }
 }
-
