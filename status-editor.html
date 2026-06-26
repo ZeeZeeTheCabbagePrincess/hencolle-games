@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hencolle Kid-Simple Status Editor</title>
+  <link rel="stylesheet" href="./status-editor.css">
+  <script>
+    if (window.location.protocol === "file:") {
+      window.location.replace("http://127.0.0.1:4173/status-editor.html");
+    }
+  </script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <h1>Status Effects</h1>
+      <p class="intro">Click a status, change what it does, then press save.</p>
+      <div class="sidebar-actions">
+        <button id="add-status" class="main-button">Add Status</button>
+        <button id="copy-status" class="side-button">Copy Status</button>
+        <button id="delete-status" class="side-button danger">Delete Status</button>
+      </div>
+      <div id="status-list" class="item-list"></div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div>
+          <div id="editor-title" class="title">Loading...</div>
+          <div id="save-status" class="status">Loading status editor...</div>
+        </div>
+        <button id="save-all" class="main-button">Save Everything</button>
+      </header>
+
+      <section class="card">
+        <h2>Basic Stuff</h2>
+        <div class="form-grid">
+          <label class="field">
+            <span>Status name</span>
+            <input id="status-label" type="text" placeholder="Paranoia">
+          </label>
+          <label class="field">
+            <span>Status key</span>
+            <input id="status-key" type="text" placeholder="paranoia">
+          </label>
+          <label class="field field-wide">
+            <span>What does it say in the menu?</span>
+            <textarea id="status-description" rows="2" placeholder="Short simple explanation"></textarea>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>How It Changes Them</h2>
+        <div class="form-grid">
+          <label class="field">
+            <span>Attack change</span>
+            <input id="status-combat" type="number" step="0.1">
+          </label>
+          <label class="field">
+            <span>Defense change</span>
+            <input id="status-defense" type="number" step="0.1">
+          </label>
+          <label class="field">
+            <span>Luck / safety change</span>
+            <input id="status-safety" type="number" step="0.1">
+          </label>
+          <label class="field">
+            <span>Chance this status causes a special event</span>
+            <input id="status-event-chance" type="number" min="0" max="1" step="0.01" placeholder="0.20">
+          </label>
+        </div>
+
+        <div class="check-grid">
+          <label><input id="phase-day" type="checkbox"> Can trigger in the day</label>
+          <label><input id="phase-night" type="checkbox"> Can trigger at night</label>
+          <label><input id="phase-bloodbath" type="checkbox"> Can trigger in the bloodbath</label>
+          <label><input id="clear-on-event" type="checkbox"> Status goes away after its event happens</label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>What Can This Status Do?</h2>
+        <p class="intro-inline">You can add multiple possible outcomes for one status. Example: paranoia could just scare them, attack someone else, or get them killed.</p>
+        <div class="sidebar-actions inline-actions">
+          <button id="add-effect" class="side-button">Add Effect</button>
+        </div>
+        <div id="effects-list" class="effects-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./status-editor.js"></script>
+</body>
+</html>

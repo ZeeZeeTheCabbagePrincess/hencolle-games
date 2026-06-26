@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hencolle Kid-Simple Sponsorship Editor</title>
+  <link rel="stylesheet" href="./editor.css">
+  <script>
+    if (window.location.protocol === "file:") {
+      window.location.replace("http://127.0.0.1:4173/editor.html");
+    }
+  </script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <h1>Sponsorships</h1>
+      <p class="intro">Click an item, change what it does, then press save.</p>
+      <div class="sidebar-actions">
+        <button id="add-item" class="main-button">Add Item</button>
+        <button id="copy-item" class="side-button">Copy Item</button>
+        <button id="delete-item" class="side-button danger">Delete Item</button>
+      </div>
+      <div id="item-list" class="item-list"></div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div>
+          <div id="editor-title" class="title">Loading...</div>
+          <div id="save-status" class="status">Loading sponsorship editor...</div>
+        </div>
+        <button id="save-all" class="main-button">Save Everything</button>
+      </header>
+
+      <section class="card">
+        <h2>Basic Stuff</h2>
+        <div class="form-grid">
+          <label class="field">
+            <span>Item name</span>
+            <input id="item-label" type="text" placeholder="Rubber Toy">
+          </label>
+          <label class="field">
+            <span>Item key</span>
+            <input id="item-key" type="text" placeholder="rubbertoy">
+          </label>
+          <label class="field field-wide">
+            <span>What does it say in the menu?</span>
+            <textarea id="item-description" rows="2" placeholder="Short simple explanation"></textarea>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Power Level</h2>
+        <div class="form-grid">
+          <label class="field">
+            <span>Attack boost</span>
+            <input id="item-combat" type="number" step="0.1">
+          </label>
+          <label class="field">
+            <span>Defense boost</span>
+            <input id="item-defense" type="number" step="0.1">
+          </label>
+          <label class="field">
+            <span>Luck / safety boost</span>
+            <input id="item-safety" type="number" step="0.1">
+          </label>
+          <label class="field">
+            <span>Chance this item does a special arena event</span>
+            <input id="item-event-chance" type="number" min="0" max="1" step="0.01" placeholder="0.20">
+          </label>
+          <label class="field">
+            <span>Chance this item saves them from death</span>
+            <input id="item-rescue-chance" type="number" min="0" max="1" step="0.01" placeholder="0.38">
+          </label>
+        </div>
+
+        <div class="check-grid">
+          <label><input id="phase-day" type="checkbox"> Can trigger in the day</label>
+          <label><input id="phase-night" type="checkbox"> Can trigger at night</label>
+          <label><input id="phase-bloodbath" type="checkbox"> Can trigger in the bloodbath</label>
+          <label><input id="consume-on-event" type="checkbox"> Item gets used up when its event happens</label>
+          <label><input id="consume-on-rescue" type="checkbox"> Item gets used up when it saves them</label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>What Happens In The Arena?</h2>
+        <p class="intro-inline">You can add multiple possible outcomes for one item. Example: a gun could kill the target 60% of the time and kill the holder 20% of the time.</p>
+        <div class="sidebar-actions inline-actions">
+          <button id="add-effect" class="side-button">Add Effect</button>
+        </div>
+        <div id="effects-list" class="effects-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./editor.js"></script>
+</body>
+</html>

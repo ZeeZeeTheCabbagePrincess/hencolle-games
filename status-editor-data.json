@@ -1,0 +1,151 @@
+{
+  "statuses": [
+    {
+      "key": "paranoia",
+      "label": "Paranoia",
+      "description": "They hear threats everywhere and start making bad choices.",
+      "combat": -0.2,
+      "defense": -0.4,
+      "safety": -1.2,
+      "eventChance": 0.18,
+      "eventPhases": [
+        "day",
+        "night"
+      ],
+      "clearOnEvent": false,
+      "effects": [
+        {
+          "type": "story-only",
+          "chance": 2,
+          "message": "{user} keeps hearing footsteps that are not there and wastes precious time.",
+          "customCode": ""
+        },
+        {
+          "type": "kill-target",
+          "chance": 1,
+          "message": "{user} gives in to paranoia and attacks {target} first.",
+          "customCode": ""
+        }
+      ]
+    },
+    {
+      "key": "exhaustion",
+      "label": "Exhaustion",
+      "description": "They are drained and can barely keep moving.",
+      "combat": -1.5,
+      "defense": -1,
+      "safety": -0.8,
+      "eventChance": 0.14,
+      "eventPhases": [
+        "day",
+        "night"
+      ],
+      "clearOnEvent": false,
+      "effects": [
+        {
+          "type": "story-only",
+          "chance": 3,
+          "message": "{user} stumbles around in a haze, barely keeping up.",
+          "customCode": ""
+        },
+        {
+          "type": "kill-self",
+          "chance": 1,
+          "message": "{user} collapses from exhaustion and never gets back up.",
+          "customCode": ""
+        }
+      ]
+    },
+    {
+      "key": "adrenaline",
+      "label": "Adrenaline",
+      "description": "A dangerous burst of energy makes them faster and more aggressive.",
+      "combat": 1.5,
+      "defense": 0.6,
+      "safety": -0.2,
+      "eventChance": 0.12,
+      "eventPhases": [
+        "bloodbath",
+        "day",
+        "night"
+      ],
+      "clearOnEvent": true,
+      "effects": [
+        {
+          "type": "story-only",
+          "chance": 2,
+          "message": "{user} rides a rush of adrenaline and pushes through the pain.",
+          "customCode": ""
+        },
+        {
+          "type": "kill-target",
+          "chance": 1,
+          "message": "{user} snaps into motion and overwhelms {target}.",
+          "customCode": ""
+        }
+      ]
+    },
+    {
+      "key": "horny",
+      "label": "Horniness",
+      "description": "They become horny, what more can I say",
+      "combat": 1,
+      "defense": 0,
+      "safety": 0,
+      "eventChance": 0.2,
+      "eventPhases": [
+        "day",
+        "night"
+      ],
+      "clearOnEvent": true,
+      "effects": [
+        {
+          "type": "story-only",
+          "chance": 1,
+          "message": "{user} gets horny and starts gooning!",
+          "customCode": ""
+        },
+        {
+          "type": "distract-target",
+          "chance": 1,
+          "message": "{user} gets horny and uses {target} as a sex toy!",
+          "customCode": ""
+        },
+        {
+          "type": "kill-target",
+          "chance": 1,
+          "message": "{user} gets horny and fucks {target} with a spear, killing them in the process...",
+          "customCode": ""
+        }
+      ]
+    },
+    {
+      "key": "kitten",
+      "label": "Kitten",
+      "description": "They get needy, clingy, and easier to throw off their game.",
+      "combat": -0.2,
+      "defense": -0.4,
+      "safety": -0.6,
+      "eventChance": 0.16,
+      "eventPhases": [
+        "day",
+        "night"
+      ],
+      "clearOnEvent": false,
+      "effects": [
+        {
+          "type": "story-only",
+          "chance": 2,
+          "message": "{user} slips into kitten mode and loses focus on the arena.",
+          "customCode": ""
+        },
+        {
+          "type": "distract-target",
+          "chance": 1,
+          "message": "{user} misbehaves and daddy {target} gets vewy vewy angy...\"daddies super mad kitten... meow for dada....mm dats a gud kitty.. make dada pwoud...\" {target} says to {user} as they meow",
+          "customCode": ""
+        }
+      ]
+    }
+  ]
+}

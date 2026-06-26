@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Hencolle Games</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div id="wrapper">
+    <div id="app-shell">
+    <header id="header">
+      <img class="logo" src="./hencolle-icon.png" alt="The Hencolle Games icon">
+    </header>
+
+    <div id="middle">
+      <div id="container">
+        <div id="links">
+          <div class="top-nav">
+            <button class="top-link is-active" data-panel-target="simulate">Simulate</button>
+            <button class="top-link" data-panel-target="sponsorships">Sponsorships</button>
+            <button class="top-link" data-panel-target="setup">Setup</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="container2">
+      <div id="seasonHolder">
+        <div id="title">The Hencolle Games</div>
+      </div>
+    </div>
+
+    <div id="container">
+      <aside id="sideLeft2">
+        <div class="side-section" data-panel="simulate">
+          <button id="start-games" class="sidebar-button primary">Start Games</button>
+          <button id="next-phase" class="sidebar-button">Proceed</button>
+          <button id="simulate-all" class="sidebar-button">Simulate All</button>
+          <button id="reset-simulation" class="sidebar-button">Reset</button>
+          <div id="history-nav" class="history-nav"></div>
+        </div>
+
+        <div class="side-section side-hidden" data-panel="sponsorships">
+          <div class="sidebar-copy">
+            Sponsor tributes and manage their status effects here.
+          </div>
+        </div>
+
+        <div class="side-section side-hidden" data-panel="setup">
+          <button id="shuffle-tributes" class="sidebar-button">Shuffle Districts</button>
+          <button id="add-tribute" class="sidebar-button">Add Tribute</button>
+          <button id="load-defaults" class="sidebar-button">Load Defaults</button>
+          <button id="export-roster" class="sidebar-button">Export JSON</button>
+          <button id="save-local" class="sidebar-button">Save Local</button>
+          <button id="reset-local" class="sidebar-button">Reset Local</button>
+        </div>
+      </aside>
+
+      <aside id="sideLeft3">
+        <div class="status-line"><span>Alive:</span> <strong id="alive-count">0</strong></div>
+        <div class="status-line"><span>Fallen:</span> <strong id="fallen-count">0</strong></div>
+        <div class="status-line"><span>Next:</span> <strong id="next-phase-label">Reaping</strong></div>
+      </aside>
+
+      <div id="mobile-round-banner-holder" class="mobile-round-banner-holder">
+        <div id="round-banner" class="round-banner" hidden></div>
+      </div>
+
+      <main id="content">
+
+        <section class="page-panel page-panel-visible" data-panel="simulate">
+          <div id="status-copy" class="lead-copy">Press Start Games to begin.</div>
+          <div id="winner-banner" class="winner-banner" hidden></div>
+
+          <div id="round-body" class="round-body">
+            <div id="events-empty" class="empty-copy">The season has not started yet.</div>
+            <div id="events-list" class="events-list"></div>
+          </div>
+
+          <div id="fallen-holder" class="fallen-holder" hidden>
+            <div class="subheading">Fallen Tributes</div>
+            <div id="fallen-list" class="fallen-list"></div>
+          </div>
+
+          <div id="bottom-controls" class="bottom-controls">
+            <button id="previous-round" class="bottom-button">Previous</button>
+            <button id="toggle-fallen" class="bottom-button">See Fallen Tributes</button>
+            <button id="latest-round" class="bottom-button">Latest</button>
+            <button id="bottom-proceed" class="bottom-button primary">Proceed</button>
+          </div>
+
+        </section>
+
+        <section class="page-panel" data-panel="sponsorships">
+          <section class="sponsor-panel">
+            <div class="subheading">Sponsor Control</div>
+            <p class="help-copy">Pick a tribute, send them gear, add a status, and skew the arena in their favor.</p>
+            <div class="sponsor-controls">
+              <label class="field">
+                <span>Tribute</span>
+                <select id="sponsor-tribute"></select>
+              </label>
+              <label class="field">
+                <span>Item</span>
+                <select id="sponsor-item"></select>
+              </label>
+              <div class="field sponsor-action-field" aria-hidden="true">
+                <span>&nbsp;</span>
+                <button id="send-sponsor" class="bottom-button primary sponsor-button" type="button">Send Sponsor Gift</button>
+              </div>
+            </div>
+            <div id="sponsor-feedback" class="sponsor-feedback">No sponsor action yet.</div>
+            <div class="sponsor-controls sponsor-controls-status">
+              <label class="field">
+                <span>Tribute</span>
+                <select id="status-tribute"></select>
+              </label>
+              <label class="field">
+                <span>Status effect</span>
+                <select id="status-effect"></select>
+              </label>
+              <div class="field sponsor-action-field" aria-hidden="true">
+                <span>&nbsp;</span>
+                <button id="apply-status" class="bottom-button primary sponsor-button" type="button">Apply Status</button>
+              </div>
+            </div>
+            <div id="status-feedback" class="sponsor-feedback">No status action yet.</div>
+          </section>
+
+          <section class="inventory-panel">
+            <div class="subheading">Tribute Inventory And Statuses</div>
+            <div id="inventory-board" class="inventory-board"></div>
+          </section>
+        </section>
+
+        <section class="page-panel" data-panel="setup">
+          <div class="subheading">Tribute Setup</div>
+          <p class="setup-copy">Edit the cast here before starting a new season.</p>
+
+          <div class="table-wrap">
+            <table class="tribute-table">
+              <thead>
+                <tr>
+                  <th>District</th>
+                  <th>Preview</th>
+                  <th>Name</th>
+                  <th>Color A</th>
+                  <th>Color B</th>
+                  <th>Portrait URL</th>
+                  <th>Remove</th>
+                </tr>
+              </thead>
+              <tbody id="tribute-body"></tbody>
+            </table>
+          </div>
+
+          <div class="subheading theme-heading">Theme</div>
+          <div class="theme-grid">
+            <label class="field">
+              <span>Background</span>
+              <input id="theme-background" type="color">
+            </label>
+            <label class="field">
+              <span>Panel</span>
+              <input id="theme-panel" type="color">
+            </label>
+            <label class="field">
+              <span>Accent</span>
+              <input id="theme-accent" type="color">
+            </label>
+            <label class="field">
+              <span>Link</span>
+              <input id="theme-link" type="color">
+            </label>
+          </div>
+        </section>
+      </main>
+    </div>
+    </div>
+  </div>
+
+  <template id="tribute-row-template">
+    <tr>
+      <td><input class="district-input" type="number" min="1" max="99"></td>
+      <td>
+        <div class="tribute-preview">
+          <div class="avatar-shell">
+            <img class="avatar-image" alt="">
+            <span class="avatar-fallback"></span>
+          </div>
+          <span class="preview-name"></span>
+        </div>
+      </td>
+      <td><input class="name-input" type="text" maxlength="50"></td>
+      <td><input class="color-a-input" type="color"></td>
+      <td><input class="color-b-input" type="color"></td>
+      <td><input class="portrait-input" type="url" placeholder="https://..."></td>
+      <td><button class="remove-button" type="button">X</button></td>
+    </tr>
+  </template>
+
+  <script src="./events.js"></script>
+  <script src="./sponsor-items.js"></script>
+  <script src="./sponsor-item-effects.js"></script>
+  <script src="./status-effects.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
